@@ -1,9 +1,19 @@
+require("dotenv").config()
 const { initializeDatabase } = require("./db/db.connect")
 const Recipe = require("./models/recipe.models")
 const { rmSync } = require("fs")
 const express = require("express")
 const { resolveSoa } = require("dns")
 const app = express()
+
+const cors = require("cors");
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions)); // middlerware
 
 app.use(express.json()) // middleware
 
